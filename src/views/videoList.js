@@ -10,12 +10,9 @@ var VideoListView = Backbone.View.extend({
   },
   
   render: function() {
-    this.$el.children().detach();
-    console.log(this.$el);
-    console.log(this.entries);
- 
-    var renderedList = this.entries.map((video) => {
-      return video.render();
+    //this.$el.children().detach();
+    this.entries.forEach((video) => {
+      this.$el.append(video.render());
     //   `<div class="media-left">
     //     <img class="media-object" src="${video.thumbnail}" />
     //   </div>
@@ -23,14 +20,13 @@ var VideoListView = Backbone.View.extend({
     //     <div class="video-list-entry-title">${video.title}</div>
     //     <div class="video-list-entry-detail">${video.description}</div>
     //   </div>`;
-    }).join('');
+    });
     
-    this.$el.html('<div class="video-list">' + 
-    renderedList + '</div>');
+    // this.$el.html('<div class="video-list">' + 
+    // renderedList + '</div>');
 
-    return this.$el.html();
+    return this.$el;
   },
 
   template: templateURL('src/templates/videoList.html')
-
 });
