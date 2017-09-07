@@ -7,9 +7,7 @@ var AppView = Backbone.View.extend({
     this.videoPlayer = new VideoPlayerView();
     // data.forEach(videoData => this.videos.add(new Video(videoData)));
     this.videos.on('select', function (model) {
-      console.log(model);
-      this.videoPlayer.remove();
-      this.videoPlayer = new VideoPlayerView({model: model});
+      this.videoPlayer.model = model;
       this.render();
       // console.log(model.get('id'));
     }, this);
