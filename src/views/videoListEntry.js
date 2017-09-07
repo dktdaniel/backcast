@@ -6,22 +6,12 @@ var VideoListEntryView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template(
       this.model.attributes
-      // title: this.model.get('snippet').title, 
-      // description: this.model.get('snippet').description,
-      // url: this.model.get('snippet').thumbnails.default.url
-    ));
-    return this.$el.html();
-  },
-  events: {
-    'click div': 'handleClick',
-    'mouseenter div': 'handleClick',
-
-  },
-  handleClick: function() {
-    console.log('HEYYYYYYY!');
-    this.model.select();
+    )).find('.video-list-entry-title').on('click', function () {
+      this.model.select();
+    }.bind(this));
+    
+    return this.$el;
   },
 
   template: templateURL('src/templates/videoListEntry.html')
-
 });
